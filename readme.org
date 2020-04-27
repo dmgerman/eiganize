@@ -177,4 +177,12 @@ This should output HTML... you can save this output via redirection:
 ./eiganize.py test/yourName.mecab test/yourName.txt dbs/tangoN5.db  > test/yourName.html
 #+end_src
 
-Now you can load the file test/yourName.html in your browser.
+Now you can load the file test/yourName.html in your browser. For some reason, Yomichan is disabled in my browser for local files. I have to put the files in a Web server to be able to use the extension.
+If anybody knows how to fix this, I'll appreciate it.
+
+* Bugs...
+
+Bugs and improvements to Issues and Pull Requests.
+
+--
+D. German (駄目g) dmg at turingmachine.org
