@@ -187,5 +187,11 @@ If anybody knows how to fix this, I'll appreciate it.
 
 Bugs and improvements to Issues and Pull Requests.
 
+* Acknowledgements
+
+[[https://www.patreon.com/LetsLearnJapanese/posts][NukeMarine]] was the main inspiration for this script. He also provided the databases of morphs for the different levels of JLPT. These are based on the Tango Series books
+(eg. [[https://www.amazon.co.jp/dp/B072KMMJQP/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1][Tango N5]])
+
+
 --
 D. German (駄目g) dmg at turingmachine.org
