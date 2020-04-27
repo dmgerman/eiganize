@@ -48,11 +48,11 @@ I recommend you start by using one of the databases provided. Once you have it r
 
 * Requirements
 
-** You must have the MIA dictionary add on installed.
+1.  You must have the MIA dictionary add on installed.
 
   - Make sure you have installed the JMdict, Japanese-> English
 
-** You must have the MecabUnidic  installed (the _latest_).
+2. You must have the MecabUnidic  installed (the _latest_).
 
 The best way to know if you have the latest is to check the size of the file
 
@@ -62,11 +62,14 @@ The best way to know if you have the latest is to check the size of the file
 
   *eiganize will only work with this version of the Mecab dictionary*
 
-** Python3
+3. Python3
 
 It works with Python3, except for the optional step, which requires python3.8
 
-** Some basic knowledge of running commands from the command line
+4. Some basic knowledge of running commands from the command line
+
+*Warning*. I have tested this in Linux. The instructions should be straightforward for MacOs. Windows users will need
+to update path names accordingly.
 
 
 * Optional step: create your own database of morphs
