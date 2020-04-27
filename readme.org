@@ -54,17 +54,17 @@ I recommend you start by using one of the databases provided. Once you have it r
 
 2. You must have the MecabUnidic  installed (the _latest_).
 
-The best way to know if you have the latest is to check the size of the file
+   The best way to know if you have the latest is to check the size of the file
 
    Anki2/addons21/MecabUnidic/support/matrix.bin
 
      its size should be: 485047608
 
-  *eiganize will only work with this version of the Mecab dictionary*
+   *eiganize will only work with this version of the Mecab dictionary*
 
 3. Python3
 
-It works with Python3, except for the optional step, which requires python3.8
+   It works with Python3, except for the optional step, which requires python3.8
 
 4. Some basic knowledge of running commands from the command line
 
