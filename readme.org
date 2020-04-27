@@ -1,0 +1,157 @@
+#+STARTUP: showall
+#+STARTUP: lognotestate
+#+TAGS: research(r) uvic(u) today(y) todo(t) cooking(c)
+#+SEQ_TODO: TODO(t) STARTED(s) DEFERRED(r) CANCELLED(c) | WAITING(w) DELEGATED(d) APPT(a) DONE(d)
+#+DRAWERS: HIDDEN STATE
+#+ARCHIVE: %s_done::
+#+TITLE: Eigana: adding english and Japanese ruby to a text file based on a morphman database
+#+CATEGORY:
+#+PROPERTY: header-args:sql             :engine postgresql  :exports both :cmdline csc370
+#+PROPERTY: header-args:sqlite          :db /path/to/db  :colnames yes
+#+PROPERTY: header-args:C++             :results output :flags -std=c++14 -Wall --pedantic -Werror
+#+PROPERTY: header-args:R               :results output  :colnames yes
+#+OPTIONS: ^:nil
+
+* Warning
+
+BIG, BIG, warning.
+
+This is work in progress. At this point, it is a proof of concept and not user friendly.
+
+You need command line skills to be able to do this. It is not difficult.
+
+I recommend you start by using one of the databases provided. Once you have it running, you can create your own database.
+
+* Requirements
+
+** You must have the MIA dictionary add on installed.
+
+  - Make sure you have installed the JMdict, Japanese-> English
+
+** You must have the MecabUnidic  installed (the _latest_). The best way to know if you have the latest is to check the size of the file
+
+   Anki2/addons21/MecabUnidic/support/matrix.bin
+
+     its size should be: 485047608
+
+   Morphman Unidic dictionary
+
+  *it will only work with this version*
+
+** Python3
+
+It works with Python3, except for the optional step, which requires python3.8
+
+** Some basic knowledge of running commands from the command line
+
+
+* Optional step: create your own database of morphs
+
+   This requires:
+     - sqlite3
+     - python3.8 or later
+     - csvutils
+
+  1. clone this repository:
+
+   https://github.com/dmgerman/MorphMan
+
+  It has a script that you need to extract your morphs database. This code is not yet
+  merged into morphman, but it should be soon.
+
+  2. Extract your database
+
+  Find your known.db in morphan (it is inside your anki data directory). Mine is located in
+  /home/dmg/.local/share/Anki2/dmg/dbs/known.db (dmg is my username in anki). Copy this file.
+
+  Run the following command
+
+  python3.8 .../MorphMan/scripts/dumb_db.py known.db | csvcut -t > mine.csv
+
+  this will create a csv file with the output of Morphs
+
+  now import into sqlite3 by running. I call the output database mine.db
+
+  #+begin_src sh
+  sqlite3 mine.db
+  #+end_src
+
+  #+begin_src sql
+  .import mine.csv' known
+CREATE INDEX wordsin on known(inflected);
+CREATE INDEX wordsbase on known(base);
+CREATE INDEX wordsbnorm on known(norm);
+select * from known limit 10;
+  #+end_src
+
+If everything works, you shoud see a list  of the 10 morphs. Exit it with Ctrl-D
+
+* Installation
+
+** Step 1. Test you can run mecab
+
+For the next steps I'll assume that you are trying to "eiganaize" the file yourName.txt
+found in the directory tests.
+
+MecabUnidic comes with binaries for the 3 main ones (linux, macos and windows). The name of the binary
+is mecab.lin, mecab and mecab.exe. Adjust accordingly. I'll use the linux version in this example:
+
+move to the directory addons21/MecabUnidic/support/ of anki and run:
+
+where <fullpath> is the location where yourName is:
+
+#+begin_src sh
+./mecab.lin -d . -r ./mecabrc < <fullpath>/yourName.txt
+#+end_src
+
+
+The output should end with the following 5 lines:
+
+#+begin_example
+は	助詞,係助詞,*,*,*,*,ハ,は,は,ワ,は,ワ,和,*,*,*,*,*,*,係助,ハ,ハ,ハ,ハ,*,"動詞%F2@0,名詞%F1,形容詞%F2@-1",*,8059703733133824,29321
+叫ん	動詞,一般,*,*,五段-バ行,連用形-撥音便,サケブ,叫ぶ,叫ん,サケン,叫ぶ,サケブ,和,*,*,*,*,*,*,用,サケン,サケブ,サケン,サケブ,2,C1,*,3869190075327109,14076
+だ	助動詞,*,*,*,助動詞-タ,終止形-一般,タ,た,だ,ダ,だ,ダ,和,*,*,*,*,*,*,助動,ダ,ダ,ダ,ダ,*,動詞%F2@1,*,5948924875645611,21642
+。	補助記号,句点,*,*,*,*,*,。,。,*,。,*,記号,*,*,*,*,*,*,補助,*,*,*,*,*,*,*,6880571302400,25
+EOS
+#+end_example
+
+If you see less columns in the output you have the wrong version of Mecab.
+
+I have created a script that runs in Linux but needs to be customized. See mecab/runMecab.sh
+
+
+** Step 2. Configure the  location of the MIA dictionary
+
+Look at config.py and configure accordingly. You should be able to open the miaDicLocation file using sqlite3 or sqlitebrowser
+
+
+* eiganize your file:
+
+these steps use yourName.txt as an example using the tangoN5 database provided under dbs.
+Use your database otherwise.
+
+** Step 1. Run mecab on the file you want to eiganize
+
+
+Using mecab (see above) convert your file:
+
+#+begin_src sh
+./mecab.lin -d . -r ./mecabrc < <fullpath>/yourName.txt > <fullpath>/yourName.mecab
+#+end_src
+
+
+** Step 2: create the HTML file:
+
+the first parameter is the mecab file, the second the origianal file, the third the database to use
+
+#+begin_src sh
+./eiganize.py test/yourName.mecab test/yourName.txt dbs/tangoN5.db
+#+end_src
+
+This should output HTML... you can save this output via redirection:
+
+#+begin_src sh
+./eiganize.py test/yourName.mecab test/yourName.txt dbs/tangoN5.db  > test/yourName.html
+#+end_src
+
+Now you can load the file test/yourName.html in your browser.
