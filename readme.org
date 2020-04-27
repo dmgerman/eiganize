@@ -4,7 +4,7 @@
 #+SEQ_TODO: TODO(t) STARTED(s) DEFERRED(r) CANCELLED(c) | WAITING(w) DELEGATED(d) APPT(a) DONE(d)
 #+DRAWERS: HIDDEN STATE
 #+ARCHIVE: %s_done::
-#+TITLE: Eigana: adding english and Japanese ruby to a text file based on a morphman database
+#+TITLE: Eigana: adding English and Japanese ruby to a text file based on a morphman database
 #+CATEGORY:
 #+PROPERTY: header-args:sql             :engine postgresql  :exports both :cmdline csc370
 #+PROPERTY: header-args:sqlite          :db /path/to/db  :colnames yes
