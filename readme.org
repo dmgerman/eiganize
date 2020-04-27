@@ -27,22 +27,24 @@ Eiganize converts simple text like this:
 
 #+end_example
 
-[[into an HTML page like this:
+into an HTML page like this:
 
-sample.png]]
+[[sample.png]]
 
 where only words that you don't know are enhanced with furigana and brief English translation. It also adds links to
 automatic translators for every line (it should be sentence, but that is for the future)
 
-* Warning
+** Warning
 
-BIG, BIG, warning.
+*BIG, BIG, warning.*
 
 This is work in progress. At this point, it is a proof of concept and not user friendly.
 
 You need command line skills to be able to do this. It is not difficult.
 
 I recommend you start by using one of the databases provided. Once you have it running, you can create your own database.
+
+
 
 * Requirements
 
