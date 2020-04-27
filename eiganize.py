@@ -53,11 +53,11 @@ order by frequency
 
 def known_word(cur, w):
 
-    query = cur.execute('''
-select norm, base, inflected, reading, pos, subpos
-from known
-where inflected = '%s'
-'''%w)
+    try:
+        query = cur.execute('select norm, base, inflected, reading, pos, subpos from known where inflected = ?', (w,))
+    except:
+        print("failed query with word [%s]"%w)
+        raise
 
     colnames = [ d[0] for d in query.description ]
 
