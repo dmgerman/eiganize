@@ -12,6 +12,10 @@
 #+PROPERTY: header-args:R               :results output  :colnames yes
 #+OPTIONS: ^:nil
 
+Example of what this does:
+
+
+
 * Warning
 
 BIG, BIG, warning.
@@ -52,16 +56,15 @@ It works with Python3, except for the optional step, which requires python3.8
      - python3.8 or later
      - csvutils
 
-  1. clone this repository:
-
+1. clone this repository:
    https://github.com/dmgerman/MorphMan
 
   It has a script that you need to extract your morphs database. This code is not yet
   merged into morphman, but it should be soon.
 
-  2. Extract your database
+2. Extract your database
 
-  Find your known.db in morphan (it is inside your anki data directory). Mine is located in
+   Find your known.db in morphan (it is inside your anki data directory). Mine is located in
   /home/dmg/.local/share/Anki2/dmg/dbs/known.db (dmg is my username in anki). Copy this file.
 
   Run the following command
