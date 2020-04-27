@@ -14,7 +14,7 @@
 
 Example of what this does:
 
-
+[[sample.png]]
 
 * Warning
 
