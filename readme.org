@@ -52,15 +52,15 @@ I recommend you start by using one of the databases provided. Once you have it r
 
   - Make sure you have installed the JMdict, Japanese-> English
 
-** You must have the MecabUnidic  installed (the _latest_). The best way to know if you have the latest is to check the size of the file
+** You must have the MecabUnidic  installed (the _latest_).
+
+The best way to know if you have the latest is to check the size of the file
 
    Anki2/addons21/MecabUnidic/support/matrix.bin
 
      its size should be: 485047608
 
-   Morphman Unidic dictionary
-
-  *it will only work with this version*
+  *eiganize will only work with this version of the Mecab dictionary*
 
 ** Python3
 
@@ -100,7 +100,7 @@ It works with Python3, except for the optional step, which requires python3.8
   #+end_src
 
   #+begin_src sql
-  .import mine.csv' known
+.import 'mine.csv' known
 CREATE INDEX wordsin on known(inflected);
 CREATE INDEX wordsbase on known(base);
 CREATE INDEX wordsbnorm on known(norm);
