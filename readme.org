@@ -12,9 +12,27 @@
 #+PROPERTY: header-args:R               :results output  :colnames yes
 #+OPTIONS: ^:nil
 
-Example of what this does:
+Eiganize converts simple text like this:
 
-[[sample.png]]
+#+begin_example
+第二章　端緒
+
+　知らないベルの音だ。
+
+　まどろみの中でそう思った。目覚まし？　でも、俺はまだ眠いのだ。昨夜は絵を描くのに夢中になっていて、ベッドに入ったのは明け方だったのだ。
+
+「……くん。……たきくん」
+
+　今度は、誰かに名を呼ばれている。女の声。……女？
+
+#+end_example
+
+[[into an HTML page like this:
+
+sample.png]]
+
+where only words that you don't know are enhanced with furigana and brief English translation. It also adds links to
+automatic translators for every line (it should be sentence, but that is for the future)
 
 * Warning
 
